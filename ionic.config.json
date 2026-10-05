@@ -1,0 +1,7 @@
+{
+  "name": "gakadaide-simobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
