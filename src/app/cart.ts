@@ -29,4 +29,10 @@ export class Cart {
         return total;
     }
 
+    clearCart() {
+        while (this.cartItems.length > 0) {
+            this.cartItems.pop();
+        }
+    }
+
 }

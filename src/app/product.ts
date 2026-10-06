@@ -97,7 +97,7 @@ export class Product {
     },
   ];
 
-  constructor() {}
+  constructor() { }
 
   getProductById(id: any): any {
     for (var i: number = 0; i < this.products.length; i++) {
@@ -107,5 +107,18 @@ export class Product {
     }
 
     return null;
+  }
+
+  reduceStock(cartItems: any[], quantityPurchased: number[]) {
+    for (var i in cartItems) {
+      for (var j in this.products) {
+        if (this.products[j].id == cartItems[i].id) {
+          if (this.products[j].stock > 0) {
+            this.products[j].stock -= quantityPurchased[i];
+          }
+          break;
+        }
+      }
+    }
   }
 }

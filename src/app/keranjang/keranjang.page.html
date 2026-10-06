@@ -25,5 +25,14 @@
     </ion-label>
   </ion-item>
 
+  <ion-item>
+    <ion-button expand="block" [disabled]="cartItems.length == 0" (click)="confirmTransaction()">
+      Konfirmasi Transaksi
+    </ion-button>
+  </ion-item>
+  
+  <ion-item *ngIf="message != ''">
+    <ion-label> {{ message }} </ion-label>
+  </ion-item>
 
 </ion-content>
