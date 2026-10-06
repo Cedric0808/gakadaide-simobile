@@ -207,3 +207,101 @@ Fitur/hasil implementasi:
   - Harga jual
   - Stok
 - Data yang ditampilkan berasal dari satu sumber data yang sama, yaitu Product Service.
+
+### Step 7 — Cart dan Pengelolaan Quantity
+
+Fitur keranjang digunakan untuk mengelola produk yang akan dibeli dan menghitung total belanja sebelum transaksi dikonfirmasi.
+
+Alur fitur:
+
+```text
+Detail Produk
+→ pengguna memasukkan quantity
+→ validasi quantity dan stok
+→ Cart Service menyimpan produk dan quantity
+→ Halaman Keranjang menampilkan item dan total belanja
+```
+
+Tampilan dan implementasi:
+
+- Halaman Detail Produk menggunakan `ion-list` dan `ion-item` untuk menyusun informasi produk: gambar, nama, kategori, stok, harga beli, dan harga jual.
+- Input `Jumlah` menggunakan `ion-input` dengan binding `[(ngModel)]` untuk menyimpan quantity yang akan dibeli. Event `keyup` menjalankan pemeriksaan format angka, nilai lebih dari 0, dan quantity yang tidak melebihi stok produk.
+- Tombol `Tambah ke Keranjang` memanggil fungsi `addToCart()` dan dinonaktifkan jika stok produk 0. Pesan hasil penambahan ditampilkan setelah aksi tersebut; tombol `Lihat Keranjang` memakai `routerLink` menuju halaman keranjang.
+- Class `Cart` menyimpan data produk dan quantity pada dua daftar yang berpasangan, yaitu `cartItems[]` dan `quantityPurchased[]`.
+- Jika produk yang sama ditambahkan lagi, Cart menggabungkan jumlahnya dengan quantity yang sudah ada, bukan membuat baris produk baru.
+- Template Keranjang mengulang `cartItems` dengan `*ngFor` dan menampilkan nama produk, harga jual, serta quantity dari indeks yang sama pada `quantityPurchased[]`.
+- Fungsi `getTotal()` menjumlahkan hasil perkalian harga jual dan quantity untuk seluruh item. Nilai total ditampilkan sebagai `Total Belanja`.
+- Halaman Keranjang menyediakan tombol `Konfirmasi Transaksi`; binding `[disabled]` menonaktifkannya ketika `cartItems` kosong.
+
+### Step 8 — Konfirmasi Transaksi dan Pengurangan Stok
+
+Proses checkout mencatat isi keranjang sebagai transaksi dan memperbarui stok produk.
+
+Alur proses:
+
+```text
+Keranjang
+→ pengguna memilih Konfirmasi Transaksi
+→ Transaction Service menyimpan transaksi dan detail item
+→ Product Service mengurangi stok sesuai quantity
+→ Cart Service mengosongkan keranjang
+→ halaman menampilkan pesan transaksi berhasil
+```
+
+Tampilan dan implementasi:
+
+- Proses dimulai dari tombol `Konfirmasi Transaksi` pada halaman Keranjang. Tombol tersebut dinonaktifkan apabila tidak ada item yang dapat diproses.
+- Sebelum keranjang dibersihkan, Transaction Service membuat salinan detail item yang memuat `id`, nama, kategori, harga jual, dan quantity setiap produk.
+- Setiap transaksi menyimpan nomor ID berurutan, tanggal transaksi, daftar item, dan total belanja. Tanggal dibentuk dari tanggal, bulan, dan tahun saat konfirmasi dilakukan.
+- Product Service mencari produk berdasarkan ID pada keranjang, lalu mengurangi nilai stok berdasarkan quantity yang dibeli.
+- Setelah pencatatan transaksi dan pengurangan stok dipanggil, Cart menghapus item keranjang dan halaman menampilkan pesan `Transaksi berhasil dikonfirmasi` melalui kondisi `*ngIf`.
+
+### Step 9 — Detail Transaksi dan Routing
+
+Pengguna dapat memilih transaksi dari halaman riwayat untuk melihat detail pembeliannya.
+
+Alur navigasi dan data:
+
+```text
+Transaction Service
+→ Halaman Transaksi menampilkan riwayat
+→ pengguna memilih salah satu transaksi
+→ routing /detail-transaksi/:id
+→ DetailTransaksiPage mengambil transaksi berdasarkan id
+→ UI menampilkan detail transaksi
+```
+
+Tampilan dan implementasi:
+
+- Halaman Transaksi mengambil daftar transaksi dari Transaction Service saat inisialisasi dan menampilkannya menggunakan `*ngFor` pada daftar item Ionic.
+- Setiap baris riwayat menampilkan nomor transaksi, tanggal, dan total. Jika daftar masih kosong, kondisi `*ngIf` menampilkan informasi `Belum ada transaksi.`
+- Baris transaksi menggunakan `routerLink` yang menyertakan ID transaksi pada pola `/detail-transaksi/:id` untuk membuka transaksi yang dipilih.
+- Route `detail-transaksi/:id` memuat DetailTransaksiPage. Halaman membaca parameter `id` dari `ActivatedRoute`, lalu meminta data transaksi yang sesuai melalui `getTransactionById(id)`.
+- Jika transaksi ditemukan, template menampilkan nomor dan tanggal transaksi, kemudian menggunakan `*ngFor` untuk mengulang daftar item dan menampilkan nama, kategori, harga jual, dan quantity.
+- Bagian akhir detail menampilkan total transaksi yang tersimpan pada transaksi tersebut.
+
+### Step 10 — Ringkasan Produk dan Transaksi pada Home Page
+
+Halaman Home berfungsi sebagai Dashboard yang merangkum kondisi produk dan transaksi hari ini.
+
+Alur data:
+
+```text
+Product Service ───────────────→ jumlah produk
+Transaction Service ───────────→ jumlah transaksi hari ini
+                    ├──────────→ pendapatan hari ini
+                    └──────────→ produk terlaris
+                                  ↓
+                            HomePage → Dashboard
+```
+
+Tampilan dan implementasi:
+
+- HomePage menerima Product Service dan Transaction Service melalui dependency injection, lalu menyediakan fungsi untuk mengambil nilai ringkasan dari masing-masing service.
+- Dashboard menyajikan empat ringkasan dalam komponen `ion-item` dan `ion-label`:
+  - `Jumlah Produk` berasal dari jumlah seluruh data pada daftar produk.
+  - `Total Transaksi Hari Ini` menghitung transaksi dengan tanggal yang sama dengan tanggal saat ini.
+  - `Total Pendapatan Hari Ini` menjumlahkan nilai total transaksi pada tanggal tersebut.
+  - `Produk Terlaris` menampilkan nama produk dengan quantity penjualan tertinggi dari seluruh transaksi yang tersimpan beserta jumlah barangnya (bukan hanya transaksi hari ini).
+- Nilai ringkasan ditampilkan menggunakan interpolation Angular, sehingga hasil fungsi pada HomePage muncul langsung pada Dashboard.
+- Ringkasan transaksi bergantung pada data transaksi yang tercatat oleh Transaction Service selama aplikasi berjalan.
