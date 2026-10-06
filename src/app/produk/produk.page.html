@@ -5,12 +5,32 @@
     </ion-buttons>
 
     <ion-title>Produk</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/tambah-produk">
+        <ion-icon name="add" slot="icon-only"> </ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-list>
-    <ion-item *ngFor="let product of products">
+    <ion-item>
+      <ion-input
+        type="search"
+        label="Cari Produk"
+        labelPlacement="stacked"
+        placeholder="Masukkan nama produk"
+        [(ngModel)]="searchText"
+      >
+      </ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngFor="let product of products">
+    <ion-item
+      *ngIf="isProductMatch(product.name)"
+      routerLink="/detail-produk/{{product.id}}"
+    >
       <ion-label>
         <h2>{{ product.name }}</h2>
 
