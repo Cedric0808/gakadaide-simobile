@@ -4,14 +4,22 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
 
-    <ion-title> Produk </ion-title>
+    <ion-title>Produk</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">produk</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list>
+    <ion-item *ngFor="let product of products">
+      <ion-label>
+        <h2>{{ product.name }}</h2>
+
+        <p>Kategori: {{ product.category }}</p>
+
+        <p>Harga Jual: Rp {{ product.sellingPrice }}</p>
+
+        <p>Stok: {{ product.stock }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
