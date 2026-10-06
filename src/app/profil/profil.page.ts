@@ -7,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   standalone: false,
 })
 export class ProfilPage implements OnInit {
+  storeName: string = 'Toko Makmur Jaya';
+  ownerName: string = 'Bu Marni';
+  businessType: string = 'Toko Kelontong';
+  applicationName: string = 'SIMOBILE';
+  applicationStatus: string = 'Offline';
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

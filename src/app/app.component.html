@@ -25,6 +25,7 @@
         <ion-menu-toggle>
           <ion-item>
             <ion-icon name="log-out" slot="start"> </ion-icon>
+
             <ion-label> Logout </ion-label>
           </ion-item>
         </ion-menu-toggle>
@@ -36,22 +37,22 @@
 
   <ion-tabs>
     <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="home">
+      <ion-tab-button tab="home" routerLink="/tabs/home">
         <ion-icon name="home"></ion-icon>
         <ion-label>Dashboard</ion-label>
       </ion-tab-button>
 
-      <ion-tab-button tab="produk">
+      <ion-tab-button tab="produk" routerLink="/tabs/produk">
         <ion-icon name="cube"></ion-icon>
         <ion-label>Produk</ion-label>
       </ion-tab-button>
 
-      <ion-tab-button tab="transaksi">
+      <ion-tab-button tab="transaksi" routerLink="/tabs/transaksi">
         <ion-icon name="receipt"></ion-icon>
         <ion-label>Transaksi</ion-label>
       </ion-tab-button>
 
-      <ion-tab-button tab="profil">
+      <ion-tab-button tab="profil" routerLink="/tabs/profil">
         <ion-icon name="person"></ion-icon>
         <ion-label>Profil</ion-label>
       </ion-tab-button>

@@ -1,13 +1,106 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>tentang</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button> </ion-menu-button>
+    </ion-buttons>
+
+    <ion-title> Tentang Aplikasi </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">tentang</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list>
+    <ion-item>
+      <ion-icon name="phone-portrait" slot="start"> </ion-icon>
+
+      <ion-label>
+        <h1>SIMOBILE</h1>
+        <p>Sistem Informasi Mobile Toko Makmur Jaya</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="information-circle" slot="start"> </ion-icon>
+
+      <ion-label>
+        <h2>Tentang SIMOBILE</h2>
+        <p>
+          SIMOBILE merupakan aplikasi mobile sederhana untuk membantu
+          pengelolaan operasional Toko Makmur Jaya.
+        </p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="cube" slot="start"> </ion-icon>
+
+      <ion-label>
+        <h2>Pengelolaan Produk</h2>
+        <p>
+          Aplikasi menyediakan fitur untuk melihat, menambah, mengedit, dan
+          mencari data produk beserta harga dan stoknya.
+        </p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="cart" slot="start"> </ion-icon>
+
+      <ion-label>
+        <h2>Keranjang dan Transaksi</h2>
+        <p>
+          Produk dapat ditambahkan ke keranjang, dihitung total belanjanya,
+          kemudian dikonfirmasi menjadi transaksi.
+        </p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="receipt" slot="start"> </ion-icon>
+
+      <ion-label>
+        <h2>Riwayat Transaksi</h2>
+        <p>
+          Setiap transaksi yang dikonfirmasi dapat dilihat kembali melalui
+          halaman Riwayat Transaksi beserta detailnya.
+        </p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="stats-chart" slot="start"> </ion-icon>
+
+      <ion-label>
+        <h2>Dashboard</h2>
+        <p>
+          Dashboard menampilkan jumlah produk, total transaksi hari ini, total
+          pendapatan hari ini, dan produk terlaris.
+        </p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="cloud-offline" slot="start"> </ion-icon>
+
+      <ion-label>
+        <h2>Penyimpanan Data</h2>
+        <p>
+          Data SIMOBILE disimpan sementara di dalam aplikasi tanpa menggunakan
+          database eksternal maupun API.
+        </p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="color-palette" slot="start"> </ion-icon>
+
+      <ion-label>
+        <h2>Tampilan</h2>
+        <p>
+          SIMOBILE menggunakan custom theme serta menyediakan pilihan Mode
+          Terang dan Mode Gelap.
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
