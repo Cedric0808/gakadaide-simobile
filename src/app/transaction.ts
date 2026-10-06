@@ -1,10 +1,17 @@
-import { Service } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Product } from './product';
 
-@Service()
+@Injectable({
+    providedIn: 'root',
+})
 export class Transaction {
     transactions: any[] = [];
 
-    constructor() { }
+    products: any[] = [];
+
+    constructor(private product: Product) {
+        this.products = this.product.products;
+    }
 
     addTransaction(cartItems: any[], quantityPurchased: number[], total: number) {
         var transactionItems: any[] = [];
@@ -44,4 +51,75 @@ export class Transaction {
 
         return null;
     }
+
+    getTodayTransactionCount(): number {
+        const currentDate = new Date();
+
+        const d = currentDate.getDate();
+        const m = currentDate.getMonth() + 1;
+        const y = currentDate.getFullYear();
+
+        var today: string = d + '-' + m + '-' + y;
+
+        var total: number = 0;
+
+        for (var i in this.transactions) {
+            if (this.transactions[i].date == today) {
+                total++;
+            }
+        }
+
+        return total;
+    }
+
+    getTodayRevenue(): number {
+        const currentDate = new Date();
+
+        const d = currentDate.getDate();
+        const m = currentDate.getMonth() + 1;
+        const y = currentDate.getFullYear();
+
+        var today: string = d + '-' + m + '-' + y;
+
+        var total: number = 0;
+
+        for (var i in this.transactions) {
+            if (this.transactions[i].date == today) {
+                total += this.transactions[i].total;
+            }
+        }
+
+        return total;
+    }
+
+    getBestSellingProduct(): string {
+        if (this.transactions.length == 0) {
+            return 'Belum ada';
+        }
+
+        var bestProduct: string = 'Belum ada';
+        var highestCount: number = 0;
+
+        for (var i in this.products) {
+            var count: number = 0;
+
+            for (var j in this.transactions) {
+                for (var k in this.transactions[j].items) {
+                    if (this.transactions[j].items[k].id == this.products[i].id) {
+                        count += this.transactions[j].items[k].quantity;
+                    }
+                }
+            }
+
+            if (count > highestCount) {
+                highestCount = count;
+
+                bestProduct = this.products[i].name;
+            }
+        }
+
+        return bestProduct + " (" + highestCount + " barang)";
+    }
+
+
 }

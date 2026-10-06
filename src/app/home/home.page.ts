@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Product } from '../product';
+import { Transaction } from '../transaction';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +10,25 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(
+    private product: Product,
+    private transaction: Transaction,
+  ) { }
+
+  getProductCount(): number {
+    return this.product.getProductCount();
+  }
+
+  getTodayTransactionCount(): number {
+    return this.transaction.getTodayTransactionCount();
+  }
+
+  getTodayRevenue(): number {
+    return this.transaction.getTodayRevenue();
+  }
+
+  getBestSellingProduct(): string {
+    return this.transaction.getBestSellingProduct();
+  }
 
 }

@@ -121,4 +121,9 @@ export class Product {
       }
     }
   }
+
+  getProductCount(): number {
+    return this.products.length;
+  }
+
 }
