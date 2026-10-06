@@ -71,7 +71,7 @@ ionic serve
 
 Setelah proses build selesai, aplikasi akan dijalankan melalui development server Ionic dan dapat dibuka melalui browser.
 
-## Fitur yang Berhasil Diimplementasikan — Step 1 sampai Step 6
+## Fitur yang Berhasil Diimplementasikan
 
 ### Step 1 — Project Setup dengan NgModule
 

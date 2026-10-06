@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Cart } from '../cart';
 
 @Component({
   selector: 'app-keranjang',
@@ -7,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   standalone: false,
 })
 export class KeranjangPage implements OnInit {
+  cartItems: any[] = [];
 
-  constructor() { }
+  quantityPurchased: number[] = [];
+
+  constructor(private cart: Cart) { }
 
   ngOnInit() {
+    this.cartItems = this.cart.cartItems;
+    this.quantityPurchased = this.cart.quantityPurchased;
   }
+
+  getTotal(): number {
+    return this.cart.getTotal();
+  }
+
 
 }
