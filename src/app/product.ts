@@ -98,4 +98,14 @@ export class Product {
   ];
 
   constructor() {}
+
+  getProductById(id: any): any {
+    for (var i: number = 0; i < this.products.length; i++) {
+      if (this.products[i].id == id) {
+        return this.products[i];
+      }
+    }
+
+    return null;
+  }
 }
