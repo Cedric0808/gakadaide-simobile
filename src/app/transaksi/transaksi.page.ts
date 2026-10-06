@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Transaction } from '../transaction';
 
 @Component({
   selector: 'app-transaksi',
@@ -7,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   standalone: false,
 })
 export class TransaksiPage implements OnInit {
+  transactions: any[] = [];
 
-  constructor() { }
+  constructor(private transaction: Transaction) {}
 
   ngOnInit() {
+    this.transactions = this.transaction.transactions;
   }
 
 }

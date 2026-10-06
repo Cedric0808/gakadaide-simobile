@@ -35,4 +35,13 @@ export class Transaction {
         });
     }
 
+    getTransactionById(id: any): any {
+        for (var i in this.transactions) {
+            if (this.transactions[i].id == id) {
+                return this.transactions[i];
+            }
+        }
+
+        return null;
+    }
 }

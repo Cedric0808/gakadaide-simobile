@@ -9,9 +9,18 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">transaksi</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-item *ngIf="transactions.length == 0">
+    <ion-label> Belum ada transaksi. </ion-label>
+  </ion-item>
+  <ion-list>
+    <ion-item *ngFor="let transaction of transactions" routerLink="/detail-transaksi/{{transaction.id}}">
+      <ion-label>
+        <h2>Transaksi #{{ transaction.id }}</h2>
+
+        <p>Tanggal: {{ transaction.date }}</p>
+
+        <p>Total: Rp {{ transaction.total }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
