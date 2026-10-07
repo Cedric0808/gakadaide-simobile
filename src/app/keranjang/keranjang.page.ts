@@ -23,6 +23,10 @@ export class KeranjangPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.refreshData()
+  }
+
+  refreshData() {
     this.cartItems = this.cart.cartItems;
     this.quantityPurchased = this.cart.quantityPurchased;
   }

@@ -12,8 +12,12 @@ export class TransaksiPage implements OnInit {
 
   constructor(private transaction: Transaction) {}
 
-  ngOnInit() {
+  refreshData() {
     this.transactions = this.transaction.transactions;
+  }
+
+  ngOnInit() {
+    this.refreshData()
   }
 
 }

@@ -7,8 +7,12 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-button expand="block" (click)="refreshData()">
+      Refresh
+    </ion-button>
+  </ion-item>
   <ion-list>
     <ion-item *ngFor="let item of cartItems, let i = index">
       <ion-label>

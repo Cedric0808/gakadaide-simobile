@@ -9,12 +9,17 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-button expand="block" (click)="refreshData()">
+      Refresh
+    </ion-button>
+  </ion-item>
   <div id="dashboardAnimation">
     <ion-item>
       <ion-label>
         <p>Jumlah Produk</p>
 
-        <h1>{{ getProductCount() }}</h1>
+        <h1>{{ productCount }}</h1>
       </ion-label>
     </ion-item>
 
@@ -22,7 +27,7 @@
       <ion-label>
         <p>Total Transaksi Hari Ini</p>
 
-        <h1>{{ getTodayTransactionCount() }}</h1>
+        <h1>{{ transactionCount }}</h1>
       </ion-label>
     </ion-item>
 
@@ -30,7 +35,7 @@
       <ion-label>
         <p>Total Pendapatan Hari Ini</p>
 
-        <h1>Rp {{ getTodayRevenue() }}</h1>
+        <h1>Rp {{ todayRevenue }}</h1>
       </ion-label>
     </ion-item>
 
@@ -38,7 +43,7 @@
       <ion-label>
         <p>Produk Terlaris</p>
 
-        <h2>{{ getBestSellingProduct() }}</h2>
+        <h2>{{ bestSellingProduct }}</h2>
       </ion-label>
     </ion-item>
   </div>

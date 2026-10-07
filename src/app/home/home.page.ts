@@ -14,22 +14,25 @@ export class HomePage {
     private product: Product,
     private transaction: Transaction,
     private animationCtrl: AnimationController,
-  ) {}
+  ) { }
 
-  getProductCount(): number {
-    return this.product.getProductCount();
+  productCount: Number = 0
+
+  transactionCount: Number = 0
+
+  todayRevenue: Number = 0;
+
+  bestSellingProduct: string = "Belum ada"
+
+  refreshData() {
+    this.productCount = this.product.getProductCount();
+    this.transactionCount = this.transaction.getTodayTransactionCount();
+    this.todayRevenue = this.transaction.getTodayRevenue();
+    this.bestSellingProduct = this.transaction.getBestSellingProduct();
   }
 
-  getTodayTransactionCount(): number {
-    return this.transaction.getTodayTransactionCount();
-  }
-
-  getTodayRevenue(): number {
-    return this.transaction.getTodayRevenue();
-  }
-
-  getBestSellingProduct(): string {
-    return this.transaction.getBestSellingProduct();
+  ngOnInit() {
+    this.refreshData()
   }
 
   fadeInDashboard() {
@@ -41,7 +44,7 @@ export class HomePage {
       const animation = this.animationCtrl
         .create()
         .addElement(dashboardElement)
-        .duration(700)
+        .duration(1000)
         .iterations(1)
         .keyframes([
           {
@@ -62,7 +65,7 @@ export class HomePage {
     }
   }
 
-   ionViewDidEnter() {
+  ionViewDidEnter() {
     this.fadeInDashboard();
   }
 

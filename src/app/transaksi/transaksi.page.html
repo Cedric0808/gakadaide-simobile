@@ -9,6 +9,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-button expand="block" (click)="refreshData()">
+      Refresh
+    </ion-button>
+  </ion-item>
   <ion-item *ngIf="transactions.length == 0">
     <ion-label> Belum ada transaksi. </ion-label>
   </ion-item>
