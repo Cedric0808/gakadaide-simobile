@@ -97,7 +97,7 @@ export class Product {
     },
   ];
 
-  constructor() { }
+  constructor() {}
 
   getProductById(id: any): any {
     for (var i: number = 0; i < this.products.length; i++) {
@@ -126,4 +126,50 @@ export class Product {
     return this.products.length;
   }
 
+  addProduct(
+    name: string,
+    category: string,
+    purchasePrice: number,
+    sellingPrice: number,
+    stock: number,
+    image: string,
+  ) {
+    this.products.push({
+      id: this.products.length + 1,
+
+      name: name,
+
+      category: category,
+
+      purchasePrice: purchasePrice,
+
+      sellingPrice: sellingPrice,
+
+      stock: stock,
+
+      image: image,
+    });
+  }
+
+  updateProduct(
+    id: any,
+    name: string,
+    category: string,
+    purchasePrice: number,
+    sellingPrice: number,
+    stock: number,
+    image: string,
+  ) {
+    for (var i in this.products) {
+      if (this.products[i].id == id) {
+        this.products[i].name = name;
+        this.products[i].category = category;
+        this.products[i].purchasePrice = purchasePrice;
+        this.products[i].sellingPrice = sellingPrice;
+        this.products[i].stock = stock;
+        this.products[i].image = image;
+        break;
+      }
+    }
+  }
 }

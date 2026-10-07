@@ -1,13 +1,104 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>tambah-produk</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/produk"> </ion-back-button>
+    </ion-buttons>
+
+    <ion-title> Tambah Produk </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">tambah-produk</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-item>
+    <ion-input
+      type="text"
+      label="Nama Produk"
+      labelPlacement="stacked"
+      placeholder="Masukkan nama produk"
+      [(ngModel)]="new_name"
+      (keyup)="checkName()"
+    >
+    </ion-input>
+  </ion-item>
+
+  <ion-text *ngIf="error_name !== ''"> {{ error_name }} </ion-text>
+  <ion-item>
+    <ion-select
+      label="Kategori"
+      labelPlacement="stacked"
+      placeholder="Pilih kategori"
+      [(ngModel)]="new_category"
+    >
+      <ion-select-option value="Sembako"> Sembako </ion-select-option>
+      <ion-select-option value="Makanan"> Makanan </ion-select-option>
+      <ion-select-option value="Minuman"> Minuman </ion-select-option>
+      <ion-select-option value="Kebutuhan Rumah">
+        Kebutuhan Rumah
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-text *ngIf="error_category !== ''"> {{ error_category }} </ion-text>
+  <ion-item>
+    <ion-input
+      type="text"
+      label="Harga Beli"
+      labelPlacement="stacked"
+      placeholder="Masukkan harga beli"
+      [(ngModel)]="new_purchasePrice"
+      (keyup)="checkPurchasePrice()"
+    >
+    </ion-input>
+  </ion-item>
+
+  <ion-text *ngIf="error_purchasePrice !== ''">
+    {{ error_purchasePrice }}
+  </ion-text>
+  <ion-item>
+    <ion-input
+      type="text"
+      label="Harga Jual"
+      labelPlacement="stacked"
+      placeholder="Masukkan harga jual"
+      [(ngModel)]="new_sellingPrice"
+      (keyup)="checkSellingPrice()"
+    >
+    </ion-input>
+  </ion-item>
+
+  <ion-text *ngIf="error_sellingPrice !== ''">
+    {{ error_sellingPrice }}
+  </ion-text>
+  <ion-item>
+    <ion-input
+      type="text"
+      label="Stok"
+      labelPlacement="stacked"
+      placeholder="Masukkan stok"
+      [(ngModel)]="new_stock"
+      (keyup)="checkStock()"
+    >
+    </ion-input>
+  </ion-item>
+
+  <ion-text *ngIf="error_stock !== ''"> {{ error_stock }} </ion-text>
+  <ion-item>
+    <ion-input
+      type="text"
+      label="Gambar Produk"
+      labelPlacement="stacked"
+      placeholder="Masukkan URL/path gambar (opsional)"
+      [(ngModel)]="new_image"
+    >
+    </ion-input>
+  </ion-item>
+  <ion-button expand="block" (click)="submitProduct()">
+    Simpan Produk
+  </ion-button>
+  
+  <ion-buttons slot="end">
+    <ion-button routerLink="/tambah-produk">
+      <ion-icon name="add" slot="icon-only"> </ion-icon>
+    </ion-button>
+  </ion-buttons>
 </ion-content>
