@@ -9,6 +9,12 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-button expand="block" routerLink="/edit-produk/{{detailProduct.id}}">
+      Edit Produk
+    </ion-button>
+  </ion-item>
+
   <ion-list *ngIf="detailProduct">
     <ion-item>
       <ion-img class="product-image" [src]="getProductImage()"> </ion-img>
@@ -36,33 +42,37 @@
     </ion-item>
 
     <ion-item>
-      <ion-input type="text" label="Jumlah" placeholder="Masukkan jumlah produk" [(ngModel)]="quantityPurchased"
-        (keyup)="checkQuantity()">
+      <ion-input
+        type="text"
+        label="Jumlah"
+        placeholder="Masukkan jumlah produk"
+        [(ngModel)]="quantityPurchased"
+        (keyup)="checkQuantity()"
+      >
       </ion-input>
     </ion-item>
 
     <ion-item *ngIf="error != ''">
-      <ion-label>
-        {{ error }}
-      </ion-label>
+      <ion-label> {{ error }} </ion-label>
     </ion-item>
 
     <ion-item>
-      <ion-button expand="block" [disabled]="detailProduct.stock == 0" (click)="addToCart()">
+      <ion-button
+        expand="block"
+        [disabled]="detailProduct.stock == 0"
+        (click)="addToCart()"
+      >
+        <ion-icon id="cartAnimation" name="cart" slot="start"> </ion-icon>
         Tambah ke Keranjang
       </ion-button>
     </ion-item>
 
     <ion-item *ngIf="message != ''">
-      <ion-label>
-        {{ message }}
-      </ion-label>
+      <ion-label> {{ message }} </ion-label>
     </ion-item>
-
   </ion-list>
-  
+
   <ion-button expand="block" routerLink="/keranjang">
     Lihat Keranjang
   </ion-button>
-
 </ion-content>
