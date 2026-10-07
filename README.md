@@ -305,3 +305,72 @@ Tampilan dan implementasi:
   - `Produk Terlaris` menampilkan nama produk dengan quantity penjualan tertinggi dari seluruh transaksi yang tersimpan beserta jumlah barangnya (bukan hanya transaksi hari ini).
 - Nilai ringkasan ditampilkan menggunakan interpolation Angular, sehingga hasil fungsi pada HomePage muncul langsung pada Dashboard.
 - Ringkasan transaksi bergantung pada data transaksi yang tercatat oleh Transaction Service selama aplikasi berjalan.
+
+### Step 14 — Form Tambah Produk
+Pada tahap ini, form Tambah Produk dibuat menggunakan pola data binding tanpa menggunakan API Angular Reactive Forms (tidak ada FormGroup, FormControl, ataupun Validators).
+Alur data:
+Tambah Produk
+→ pengguna mengisi input form
+→ validasi input berjalan otomatis (keyup)
+→ jika seluruh field valid, tombol Simpan ditekan
+→ Product Service menambahkan data ke array products
+
+Fitur/hasil implementasi:
+- Menggunakan [(ngModel)] untuk menghubungkan elemen ion-input dan ion-select dengan variabel TypeScript (Two-Way Binding).   - Menyediakan enam field utama: Nama Produk, Kategori, Harga Beli, Harga Jual, Stok, dan Gambar.   Validasi form dilakukan secara manual menggunakan fungsi TypeScript, kondisi if, dan event binding (keyup).   
+- Field seperti Harga Beli, Harga Jual, dan Stok divalidasi menggunakan RegEx ^[0-9]+$ untuk memastikan input yang dimasukkan hanya berupa angka.   - Pesan error ditampilkan secara spesifik di bawah field yang tidak valid menggunakan kondisi *ngIf.
+- Saat proses simpan berhasil, data dikirim ke Product Service dan ditambahkan ke dalam array produk menggunakan push().
+
+### Step 15 — Edit ProdukFitur Edit Produk dibuat dengan memanfaatkan Route Parameter untuk mengidentifikasi produk yang akan diubah.
+Alur navigasi dan data:
+Detail Produk
+→ klik Edit Produk 
+→ routing /edit-produk/:id
+→ EditProdukPage mengambil data produk lama dari Product Service
+→ data lama masuk ke form (ngModel)
+→ pengguna melakukan perubahan dan menyimpan
+→ Product Service memperbarui data pada array
+
+Fitur/hasil implementasi:
+- Tombol Edit pada halaman Detail Produk menggunakan routerLink yang mengirimkan ID produk melalui URL.   
+- Halaman Edit membaca parameter ID menggunakan ActivatedRoute dan meminta objek data lama melalui fungsi getProductById() dari Product Service.   
+- Data lama langsung dimasukkan ke dalam variabel form sehingga input form otomatis terisi saat halaman pertama kali dibuka.   
+- Menggunakan logika validasi keyup, kondisi, dan RegEx yang sama persis dengan form Tambah Produk.   
+- Saat disimpan, fungsi updateProduct() pada Product Service hanya memperbarui properti dari objek produk lama (berdasarkan ID) tanpa menambah jumlah produk di dalam array.   
+- Setelah berhasil diperbarui, pengguna secara otomatis diarahkan kembali ke halaman Produk menggunakan Router.navigate. 
+
+### Step 16 — Custom Theme & Dark ModeAplikasi diberikan kustomisasi tema secara global melalui pengaturan SCSS dan sebuah Theme Service.
+Alur tema:
+Halaman Pengaturan
+→ pengguna mencentang Mode Gelap
+→ Theme Service mengubah boolean darkMode
+→ class SCSS pada ion-app berubah
+→ tampilan warna seluruh aplikasi berubah seketika
+Fitur/hasil implementasi:
+- Warna dasar Ionic dikustomisasi melalui file src/theme/variables.scss, menetapkan warna hijau sebagai Primary Color dan kuning sebagai Secondary Color.   
+- Mode Gelap (Dark Mode) dikelola oleh status boolean di dalam sebuah Service baru bernama Theme Service.   
+- Komponen utama aplikasi (AppComponent) membaca status tema dari Service dan menerapkan penamaan class (light-theme atau dark-theme) pada elemen root <ion-app> menggunakan interpolation.   
+- Halaman Pengaturan menggunakan komponen ion-checkbox dengan Property Binding [checked] dan Event Binding (click) sebagai kontrol pengalih mode tema.
+- Tampilan mode terang dan mode gelap diatur melalui CSS terpisah di dalam SCSS global.
+
+### Step 17 — Animasi (Fade in Dashboard & Cart Pop Animation)Aplikasi memiliki dua animasi utama yang memanfaatkan AnimationController bawaan Ionic tanpa library pihak ketiga.
+Alur animasi:
+1. Buka Dashboard → fadeInDashboard berjalan otomatis → ringkasan muncul perlahan
+2. Tombol Tambah ke Keranjang ditekan → addToCart() sukses → ikon keranjang membesar lalu mengecil (scale)
+
+Fitur/hasil implementasi:
+- Setiap animasi diatur menggunakan AnimationController yang disisipkan melalui constructor injection dan mencari elemen UI target menggunakan document.querySelector berdasarkan ID.
+- Animasi Dashboard: Efek fade in dikonfigurasi mengubah opacity dari 0, lalu 0.5, hingga menjadi 1 dalam durasi 700 ms. Animasi ini dijalankan otomatis oleh lifecycle ionViewDidEnter() setiap kali pengguna memasuki halaman Dashboard.
+- Animasi Keranjang: Memberikan respons visual pada ikon tombol Tambah ke Keranjang ketika ditekan.
+- Animasi pop ini menggunakan properti transform: scale, dimulai dari skala 1, membesar ke skala 1.5, dan kembali ke skala 1 dalam durasi 500 ms.
+
+### Step 18 — Sistem Logout SederhanaMenu Logout dirancang sebagai simulasi keluar sederhana karena prototipe aplikasi ini belum menerapkan sistem login atau autentikasi session yang nyata.
+Alur proses:
+
+Drawer / Side Menu
+→ pengguna menekan opsi Logout
+→ aplikasi langsung mengarahkan pengguna ke halaman Dashboard
+
+Fitur/hasil implementasi:
+- Fungsi Logout diikat menggunakan (click)="logout()" pada elemen menu di dalam Drawer.
+- Fungsi logout diproses di dalam class AppComponent dengan memanggil metode navigate dari Angular Router untuk memindahkan route pengguna ke /tabs/home (Dashboard).
+- Menu aksi dibungkus menggunakan komponen ion-menu-toggle agar menu navigasi laci (Drawer) langsung tertutup secara otomatis begitu opsi Logout dipilih.
