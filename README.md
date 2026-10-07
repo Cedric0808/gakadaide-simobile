@@ -306,7 +306,7 @@ Tampilan dan implementasi:
 - Nilai ringkasan ditampilkan menggunakan interpolation Angular, sehingga hasil fungsi pada HomePage muncul langsung pada Dashboard.
 - Ringkasan transaksi bergantung pada data transaksi yang tercatat oleh Transaction Service selama aplikasi berjalan.
 
-### Step 14 — Form Tambah Produk
+### Step 11 — Form Tambah Produk
 Pada tahap ini, form Tambah Produk dibuat menggunakan pola data binding tanpa menggunakan API Angular Reactive Forms (tidak ada FormGroup, FormControl, ataupun Validators).
 Alur data:
 Tambah Produk
@@ -320,7 +320,7 @@ Fitur/hasil implementasi:
 - Field seperti Harga Beli, Harga Jual, dan Stok divalidasi menggunakan RegEx ^[0-9]+$ untuk memastikan input yang dimasukkan hanya berupa angka.   - Pesan error ditampilkan secara spesifik di bawah field yang tidak valid menggunakan kondisi *ngIf.
 - Saat proses simpan berhasil, data dikirim ke Product Service dan ditambahkan ke dalam array produk menggunakan push().
 
-### Step 15 — Edit ProdukFitur Edit Produk dibuat dengan memanfaatkan Route Parameter untuk mengidentifikasi produk yang akan diubah.
+### Step 12 — Edit ProdukFitur Edit Produk dibuat dengan memanfaatkan Route Parameter untuk mengidentifikasi produk yang akan diubah.
 Alur navigasi dan data:
 Detail Produk
 → klik Edit Produk 
@@ -338,7 +338,7 @@ Fitur/hasil implementasi:
 - Saat disimpan, fungsi updateProduct() pada Product Service hanya memperbarui properti dari objek produk lama (berdasarkan ID) tanpa menambah jumlah produk di dalam array.   
 - Setelah berhasil diperbarui, pengguna secara otomatis diarahkan kembali ke halaman Produk menggunakan Router.navigate. 
 
-### Step 16 — Custom Theme & Dark ModeAplikasi diberikan kustomisasi tema secara global melalui pengaturan SCSS dan sebuah Theme Service.
+### Step 13 — Custom Theme & Dark ModeAplikasi diberikan kustomisasi tema secara global melalui pengaturan SCSS dan sebuah Theme Service.
 Alur tema:
 Halaman Pengaturan
 → pengguna mencentang Mode Gelap
@@ -352,7 +352,7 @@ Fitur/hasil implementasi:
 - Halaman Pengaturan menggunakan komponen ion-checkbox dengan Property Binding [checked] dan Event Binding (click) sebagai kontrol pengalih mode tema.
 - Tampilan mode terang dan mode gelap diatur melalui CSS terpisah di dalam SCSS global.
 
-### Step 17 — Animasi (Fade in Dashboard & Cart Pop Animation)Aplikasi memiliki dua animasi utama yang memanfaatkan AnimationController bawaan Ionic tanpa library pihak ketiga.
+### Step 14 — Animasi (Fade in Dashboard & Cart Pop Animation)Aplikasi memiliki dua animasi utama yang memanfaatkan AnimationController bawaan Ionic tanpa library pihak ketiga.
 Alur animasi:
 1. Buka Dashboard → fadeInDashboard berjalan otomatis → ringkasan muncul perlahan
 2. Tombol Tambah ke Keranjang ditekan → addToCart() sukses → ikon keranjang membesar lalu mengecil (scale)
@@ -363,7 +363,7 @@ Fitur/hasil implementasi:
 - Animasi Keranjang: Memberikan respons visual pada ikon tombol Tambah ke Keranjang ketika ditekan.
 - Animasi pop ini menggunakan properti transform: scale, dimulai dari skala 1, membesar ke skala 1.5, dan kembali ke skala 1 dalam durasi 500 ms.
 
-### Step 18 — Sistem Logout SederhanaMenu Logout dirancang sebagai simulasi keluar sederhana karena prototipe aplikasi ini belum menerapkan sistem login atau autentikasi session yang nyata.
+### Step 15 — Sistem Logout SederhanaMenu Logout dirancang sebagai simulasi keluar sederhana karena prototipe aplikasi ini belum menerapkan sistem login atau autentikasi session yang nyata.
 Alur proses:
 
 Drawer / Side Menu
