@@ -5,18 +5,22 @@ export class Cart {
     cartItems: any[] = [];
     quantityPurchased: number[] = [];
 
-    addToCart(product: any, quantity: number) {
-        var found: boolean = false;
-        for (var i in this.cartItems) {
+    addToCart(product: any, quantity: number): boolean {
+        for (let i = 0; i < this.cartItems.length; i++) {
             if (this.cartItems[i].id == product.id) {
-                this.quantityPurchased[i] += quantity;
-                found = true;
+                if (this.quantityPurchased[i] + quantity <= product.stock) {
+                    this.quantityPurchased[i] += quantity;
+                    return true;
+                }
+                return false;
             }
         }
-        if (!found) {
+        if (quantity <= product.stock) {
             this.cartItems.push(product);
             this.quantityPurchased.push(quantity);
+            return true;
         }
+        return false;
     }
 
     getTotal(): number {
@@ -31,7 +35,10 @@ export class Cart {
 
     clearCart() {
         while (this.cartItems.length > 0) {
-            this.cartItems.pop();
+            this.cartItems.pop()
+        }
+        while (this.quantityPurchased.length > 0) {
+            this.quantityPurchased.pop()
         }
     }
 

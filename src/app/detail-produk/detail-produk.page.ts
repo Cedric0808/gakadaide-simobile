@@ -23,12 +23,12 @@ export class DetailProdukPage implements OnInit {
 
   numberPattern = /^[0-9]+$/;
 
-   constructor(
+  constructor(
     private route: ActivatedRoute,
     private product: Product,
     private cart: Cart,
     private animationCtrl: AnimationController,
-  ) {}
+  ) { }
 
 
   ngOnInit() {
@@ -48,10 +48,18 @@ export class DetailProdukPage implements OnInit {
   }
 
   addToCart() {
+    this.checkQuantity()
     if (this.error == "") {
-      this.cart.addToCart(this.detailProduct, Number(this.quantityPurchased));
-      this.message = 'Produk berhasil ditambahkan ke keranjang';
-      this.animateCart();
+      var success = this.cart.addToCart(this.detailProduct, Number(this.quantityPurchased));
+      if (success) {
+        this.message = 'Produk berhasil ditambahkan ke keranjang';
+        this.animateCart();
+      }
+      else {
+        this.error = 'Stock produk tidak cukup';
+        this.message = '';
+      }
+
     }
   }
 
@@ -67,7 +75,7 @@ export class DetailProdukPage implements OnInit {
     }
   }
 
-   animateCart() {
+  animateCart() {
     const cartElement = document.querySelector('#cartAnimation') as HTMLElement;
 
     if (cartElement != null) {

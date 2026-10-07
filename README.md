@@ -1,6 +1,6 @@
 # SIMOBILE
 
-SIMOBILE merupakan prototipe aplikasi kasir mobile berbasis Ionic Angular yang dikembangkan sebagai Project UTS Human Mobile Programming dan menggunakan arsitektur **NgModule**.
+SIMOBILE merupakan prototipe aplikasi kasir mobile berbasis Ionic Angular yang dikembangkan sebagai Project UTS Hybrid Mobile Programming dan menggunakan arsitektur **NgModule**.
 
 ## Tim
 
