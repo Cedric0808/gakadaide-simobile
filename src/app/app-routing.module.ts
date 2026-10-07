@@ -102,6 +102,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./tentang/tentang.module').then((m) => m.TentangPageModule),
   },
+  {
+    path: 'edit-produk/:id',
+    loadChildren: () =>
+      import('./edit-produk/edit-produk.module').then(
+        (m) => m.EditProdukPageModule,
+      ),
+  },
 ];
 
 @NgModule({

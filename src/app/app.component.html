@@ -1,4 +1,4 @@
-<ion-app>
+<ion-app class="{{ getThemeClass() }}">
   <ion-menu auto-hide="true" contentId="main-content">
     <ion-header>
       <ion-toolbar>
@@ -23,7 +23,7 @@
         </ion-menu-toggle>
 
         <ion-menu-toggle>
-          <ion-item>
+          <ion-item button (click)="logout()">
             <ion-icon name="log-out" slot="start"> </ion-icon>
 
             <ion-label> Logout </ion-label>

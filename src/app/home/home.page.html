@@ -9,35 +9,37 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-item>
-    <ion-label>
-      <p>Jumlah Produk</p>
+  <div id="dashboardAnimation">
+    <ion-item>
+      <ion-label>
+        <p>Jumlah Produk</p>
 
-      <h1>{{ getProductCount() }}</h1>
-    </ion-label>
-  </ion-item>
+        <h1>{{ getProductCount() }}</h1>
+      </ion-label>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>
-      <p>Total Transaksi Hari Ini</p>
+    <ion-item>
+      <ion-label>
+        <p>Total Transaksi Hari Ini</p>
 
-      <h1>{{ getTodayTransactionCount() }}</h1>
-    </ion-label>
-  </ion-item>
+        <h1>{{ getTodayTransactionCount() }}</h1>
+      </ion-label>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>
-      <p>Total Pendapatan Hari Ini</p>
+    <ion-item>
+      <ion-label>
+        <p>Total Pendapatan Hari Ini</p>
 
-      <h1>Rp {{ getTodayRevenue() }}</h1>
-    </ion-label>
-  </ion-item>
+        <h1>Rp {{ getTodayRevenue() }}</h1>
+      </ion-label>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>
-      <p>Produk Terlaris</p>
+    <ion-item>
+      <ion-label>
+        <p>Produk Terlaris</p>
 
-      <h2>{{ getBestSellingProduct() }}</h2>
-    </ion-label>
-  </ion-item>
+        <h2>{{ getBestSellingProduct() }}</h2>
+      </ion-label>
+    </ion-item>
+  </div>
 </ion-content>
