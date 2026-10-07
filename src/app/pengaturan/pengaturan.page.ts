@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Theme } from '../theme';
 
 @Component({
   selector: 'app-pengaturan',
@@ -7,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   standalone: false,
 })
 export class PengaturanPage implements OnInit {
+  constructor(private theme: Theme) {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  getDarkMode(): boolean {
+    return this.theme.getDarkMode();
   }
 
+  toggleDarkMode() {
+    this.theme.toggleTheme();
+  }
+
+  getThemeName(): string {
+    return this.theme.getThemeName();
+  }
 }
